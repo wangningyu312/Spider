@@ -391,39 +391,27 @@ int main()
 	}
 
 	//// 创建文件夹，保存图片和网页文本文件  
-	//CreateDirectory("./img", 0);
-	//CreateDirectory("./html", 0);
+	CreateDirectory("./img", 0);
+	CreateDirectory("./html", 0);
 
 	// 遍历的起始地址  
 
 	string urlStart = "http://jandan.net/ooxx";
-	string strTestImgUrl = "http://ww3.sinaimg.cn/mw600/0073tLPGgy1fxh3kq3rnlj30u0140avz.jpg";
-	CWebSpider MySpider;
-	MySpider.TestDownLoad(strTestImgUrl);
-	//MySpider.RunSpider(urlStart);
 
 	//// 使用广度遍历  
 	//// 提取网页中的超链接放入hrefUrl中，提取图片链接，下载图片。  
-	//BFS(strTestImgUrl);
+	BFS(urlStart);
 
 	////// 访问过的网址保存起来  
-	//visitedUrl.insert(urlStart);
+	visitedUrl.insert(urlStart);
 
-	//while (hrefUrl.size() != 0) 
-	//{
-	//	string url = hrefUrl.front();  // 从队列的最开始取出一个网址  
-	//	cout << url << endl;
-	//	BFS(url);                   // 遍历提取出来的那个网页，找它里面的超链接网页放入hrefUrl，下载它里面的文本，图片  
-	//	hrefUrl.pop();                 // 遍历完之后，删除这个网址  
-	//}
-
-	//vector<string> vecImgUrl;
-
-	//vecImgUrl.push_back(strTestImgUrl);
-	//vecImgUrl.push_back(strTestImgUrl);
-	//vecImgUrl.push_back(strTestImgUrl);
-
-	//DownLoadImg(vecImgUrl, strTestImgUrl);
+	while (hrefUrl.size() != 0) 
+	{
+		string url = hrefUrl.front();  // 从队列的最开始取出一个网址  
+		cout << url << endl;
+		BFS(url);                   // 遍历提取出来的那个网页，找它里面的超链接网页放入hrefUrl，下载它里面的文本，图片  
+		hrefUrl.pop();                 // 遍历完之后，删除这个网址  
+	}
 
 	WSACleanup();
 
